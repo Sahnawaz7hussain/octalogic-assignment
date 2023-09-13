@@ -1,5 +1,7 @@
 import React from "react";
-import people from "../assets/people.svg";
+import Card from "../components/Card";
+import Table from "../components/Table";
+import { Table2 } from "../components/Table2";
 
 const cardsData = [
   { head: 64, text: "total number of students" },
@@ -13,26 +15,22 @@ const Home = () => {
   return (
     <div className="w-full h-full flex items-start flex-col gap-[32px] py-[24px] px-[36px]">
       <h1 className="text-[#83858B] text-[28px] font-semibold">Overview</h1>
-      <div className="flex gap-3">
-        {cardsData.map((card) => (
-          <SingleCard head={card.head} text={card.text} />
+      {/* cards  */}
+      <div className="flex flex-wrap gap-5">
+        {cardsData.map((card, idx) => (
+          <Card key={idx} head={card.head} text={card.text} />
         ))}
       </div>
+      <span className="text-[16px] uppercase text-[#83858B] font-semibold tracking-wide">
+        Latest Enrolments
+      </span>
+      <Table />
+      <span className="text-[16px] uppercase text-[#83858B] font-semibold tracking-wide">
+        Best Students{" "}
+      </span>
+      <Table2 />
     </div>
   );
 };
-
-const SingleCard = ({ head, text }) => (
-  <div className="flex items-center justify-around gap-[16px] p-[16px] bg-white rounded-md">
-    <img src={people} alt="People" />
-    <div className="flex flex-col gap-1">
-      <span className="text-[22px] text-[#212529] font-normal">{head}</span>
-      <span className="text-[12px] font-normal text-[#83858B]">{text}</span>
-      <div className="w-full flex items-end justify-end">
-        <span className="text-[9px] text-[#B33086]">View</span>
-      </div>
-    </div>
-  </div>
-);
 
 export default Home;
